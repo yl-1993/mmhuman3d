@@ -6,7 +6,7 @@ class body_segmentation(object):
     """SMPL(X) body mesh vertex segmentation."""
 
     def __init__(self, model_type='smpl') -> None:
-        if model_type == 'smpl':
+        if model_type == 'smpl' or model_type == 'smplh':
             self.DICT = SMPL_SEGMENTATION_DICT
             self.super_set = SMPL_SUPER_SET
             self.NUM_VERTS = 6890
@@ -16,7 +16,7 @@ class body_segmentation(object):
             self.NUM_VERTS = 10475
         else:
             raise ValueError(f'Wrong model_type: {model_type}.'
-                             f' Should be in {["smpl", "smplx"]}')
+                             f' Should be in {["smpl", "smplh", "smplx"]}')
         self.model_type = model_type
         self.len = len(list(self.DICT))
 

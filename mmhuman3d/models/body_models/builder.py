@@ -5,6 +5,7 @@ from mmcv.utils import Registry
 from .flame import FLAME, FLAMELayer
 from .mano import MANO, MANOLayer
 from .smpl import SMPL, GenderedSMPL, HybrIKSMPL
+from .smplh import SMPLH, SMPLHLayer
 from .smplx import SMPLX, SMPLXLayer
 from .star import STAR
 
@@ -17,6 +18,7 @@ BODY_MODELS.register_module(
     name=['HybrIKSMPL', 'HybrIKsmpl', 'hybriksmpl', 'hybrik', 'hybrIK'],
     module=HybrIKSMPL)
 BODY_MODELS.register_module(name=['SMPLX', 'smplx'], module=SMPLX)
+BODY_MODELS.register_module(name=['SMPLH', 'smplh'], module=SMPLH)
 BODY_MODELS.register_module(name=['flame', 'FLAME'], module=FLAME)
 BODY_MODELS.register_module(name=['MANO', 'mano'], module=MANO)
 BODY_MODELS.register_module(

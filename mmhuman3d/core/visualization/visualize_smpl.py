@@ -184,9 +184,9 @@ def _prepare_body_model(body_model, body_model_config):
             model_path = body_model_config.get('model_path', None)
 
             model_type = body_model_config.get('type').lower()
-            if model_type not in ['smpl', 'smplx']:
+            if model_type not in {'smpl', 'smplh', 'smplx'}:
                 raise ValueError(f'Do not support {model_type}, please choose'
-                                 f' in `smpl` or `smplx.')
+                                 f' in `smpl`, `smplh` or `smplx.')
 
             if model_path and osp.isdir(model_path):
                 model_path = osp.join(model_path, model_type)
@@ -747,8 +747,8 @@ def render_smpl(
                                                       transl)
 
     body_model = _prepare_body_model(body_model, body_model_config)
-    model_type = body_model.name().replace('-', '').lower()
-    assert model_type in ['smpl', 'smplx']
+    model_type = body_model.name().replace('-', '').replace('+', '').lower()
+    assert model_type in {'smpl', 'smplh', 'smplx'}, f'{model_type} is not supported'
 
     vertices, joints, num_frames, num_person = _prepare_mesh(
         poses, betas, transl, verts, start, end, body_model)

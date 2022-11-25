@@ -7,7 +7,7 @@ from pytorch3d.renderer import TexturesUV, TexturesVertex
 from pytorch3d.renderer.mesh.textures import TexturesBase
 from pytorch3d.structures import Meshes, list_to_padded, padded_to_list
 
-from mmhuman3d.models.body_models.builder import SMPL, SMPLX
+from mmhuman3d.models.body_models.builder import SMPL, SMPLH, SMPLX
 from mmhuman3d.utils.mesh_utils import \
     join_meshes_as_batch as _join_meshes_as_batch
 from .builder import build_renderer
@@ -16,8 +16,8 @@ from .utils import align_input_to_padded
 
 
 class ParametricMeshes(Meshes):
-    """Mesh structure for parametric body models, E.g., smpl, smplx, mano,
-    flame.
+    """Mesh structure for parametric body models, E.g., smpl, smplh, smplx,
+    mano, flame.
 
     There are 3 ways to initialize the verts:
         1): Pass the verts directly as verts_padded (N, V, 3) or verts_list
@@ -41,7 +41,7 @@ class ParametricMeshes(Meshes):
         Will use the textures directly from the meshes.
     """
     # TODO: More model class to be added (FLAME, MANO)
-    MODEL_CLASSES = {'smpl': SMPL, 'smplx': SMPLX}
+    MODEL_CLASSES = {'smpl': SMPL, 'smplh': SMPLH, 'smplx': SMPLX}
 
     def __init__(self,
                  verts: Union[List[torch.Tensor], torch.Tensor] = None,
